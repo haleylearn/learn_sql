@@ -45,7 +45,14 @@ with cte as
 select group_concat(name) as final_result
 from cte
 group by buckets
-order by 1
+order by 1;
+
+
+
+
+
+
+
 
 
 
