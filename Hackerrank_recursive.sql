@@ -6,6 +6,10 @@ If more than one such hacker has a maximum number of submissions, print the lowe
 The query should print this information for each day of the contest, sorted by the date.
 
 Dataset
+
+create table hackers (hacker_id int, name varchar(40));
+create table submissions (submission_date date, submission_id int, hacker_id int, score int);
+
 insert into hackers values (15758, 'Rose');
 insert into hackers values (20703, 'Angela');
 insert into hackers values (36396, 'Frank');
