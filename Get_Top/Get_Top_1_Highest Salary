@@ -12,6 +12,11 @@ where salary = (select max(salary)
 select *
 from Employee e
 where (e.departmentId, e.salary) in (select id, max(salary) from Department group by departmentId)
+---> Can update by this
+SELECT Department.name AS Department ,Employee.name AS Employee, Employee.salary
+FROM Department  JOIN Employee  ON Employee.departmentId=Department.id 
+WHERE(departmentId, salary) IN
+(SELECT departmentId,MAX(salary) FROM Employee GROUP BY departmentId) ;
 
 
 -- Solution 3:
