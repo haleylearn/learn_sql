@@ -1,0 +1,27 @@
+-- Solution 1:
+select *
+from employee e1
+where salary = (select max(salary)
+                        from (select *
+                                    from employee e2
+                                    where e1.departmentId = e2.id
+                                    order by salary desc
+                                    ) x);
+
+-- Solution 2:
+select *
+from Employee e
+where (e.departmentId, e.salary) in (select id, max(salary) from Department group by departmentId)
+
+
+-- Solution 3:
+select d.name as Department, e1.name as Employee, e1.salary as Salary
+from Employee e1
+join (
+  select departmentId, max(salary) as max_sal
+  from Employee e2
+  group by departmentId 
+) e2
+join Department d on d.id = e2.departmentId
+on e1.departmentId = e2.departmentId and e1.salary = e2.max_sal
+
